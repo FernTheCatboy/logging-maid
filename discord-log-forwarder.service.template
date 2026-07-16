@@ -1,0 +1,18 @@
+[Unit]
+Description=Discord Log Forwarder Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__USER__
+WorkingDirectory=__WORKING_DIR__
+EnvironmentFile=__WORKING_DIR__/.env
+ExecStart=__WORKING_DIR__/venv/bin/python __WORKING_DIR__/bot.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
