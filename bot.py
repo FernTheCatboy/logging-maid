@@ -10,6 +10,7 @@ TOKEN = os.environ["DISCORD_BOT_TOKEN"]
 SOURCE_CHANNEL_ID = int(os.environ["SOURCE_CHANNEL_ID"])
 DEST_CHANNEL_ID = int(os.environ["DEST_CHANNEL_ID"])
 REQUIRED_FIELDS = int(os.environ.get("REQUIRED_FIELDS", "5"))
+VALID_FORMAT_REPLY = "Logged"
 INVALID_FORMAT_REPLY = "Error - Format not followed. Log again or dm @russiancatmaid if you believe this is a mistake"
 
 logging.basicConfig(
@@ -63,6 +64,11 @@ async def on_message(message: discord.Message):
             await dest_channel.send(f"{header}\n{message.content}")
         except discord.HTTPException:
             logger.exception("Failed to forward message %s", message.id)
+            return
+        try:
+            await message.reply(VALID_FORMAT_REPLY)
+        except discord.HTTPException:
+            logger.exception("Failed to reply to message %s", message.id)
     else:
         try:
             await message.reply(INVALID_FORMAT_REPLY)
