@@ -11,7 +11,7 @@ SOURCE_CHANNEL_ID = int(os.environ["SOURCE_CHANNEL_ID"])
 DEST_CHANNEL_ID = int(os.environ["DEST_CHANNEL_ID"])
 REQUIRED_FIELDS = int(os.environ.get("REQUIRED_FIELDS", "5"))
 VALID_FORMAT_REPLY = "Logged"
-INVALID_FORMAT_REPLY = "Error - Format not followed. Log again or dm @russiancatmaid if you believe this is a mistake"
+INVALID_FORMAT_REPLY = "Error - Format not followed. Log again or dm <@733654151107444797> if you believe this is a mistake"
 
 logging.basicConfig(
     level=logging.INFO,
